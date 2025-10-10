@@ -696,7 +696,7 @@ main{
   
 }
 
-@media (max-width:380px){
+@media (max-width:440px){
   #welcome {
     font-size: 24px;
   }
