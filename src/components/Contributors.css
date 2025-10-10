@@ -57,8 +57,8 @@
   scroll-snap-align: start;
   margin: 0 auto;
   flex-shrink: 0;
-  height: 420px; /* Consistent height */
-  min-height: 420px;
+  height: 350px; /* Shorter height */
+  min-height: 350px;
 }
 
 .contributors-prev,
@@ -92,7 +92,7 @@
 .contributor-card {
   background: white;
   border-radius: 20px;
-  padding: 40px 30px 0;
+  padding: 30px 25px 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
@@ -100,8 +100,8 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 420px; /* Fixed height for consistency */
-  min-height: 420px;
+  height: 350px; /* Shorter height */
+  min-height: 350px;
 }
 
 .contributor-card:hover {
@@ -212,8 +212,8 @@
   }
   
   .contributor-card {
-    height: 400px;
-    min-height: 400px;
+    height: 330px;
+    min-height: 330px;
   }
 }
 
@@ -242,9 +242,9 @@
 
   .contributor-card {
     max-width: 100%;
-    padding: 30px 20px 0;
-    height: 380px;
-    min-height: 380px;
+    padding: 25px 20px 0;
+    height: 320px;
+    min-height: 320px;
   }
 
   .contributor-avatar {
@@ -313,9 +313,9 @@
 
   .contributor-card {
     max-width: 100%;
-    padding: 25px 15px 0;
-    height: 360px;
-    min-height: 360px;
+    padding: 20px 15px 0;
+    height: 300px;
+    min-height: 300px;
   }
 
   .contributor-avatar {

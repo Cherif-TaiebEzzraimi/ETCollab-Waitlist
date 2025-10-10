@@ -105,32 +105,81 @@ const Contributors = () => {
     const el = carouselRef.current;
     if (!el) return;
     const { scrollLeft, scrollWidth, clientWidth } = el;
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+    
+    // More precise calculation for arrow visibility
+    const isAtStart = scrollLeft <= 5; // Small tolerance for smooth scrolling
+    const isAtEnd = scrollLeft >= scrollWidth - clientWidth - 5; // Small tolerance
+    
+    setCanScrollLeft(!isAtStart);
+    setCanScrollRight(!isAtEnd);
   }, []);
 
   const scrollNext = useCallback(() => {
     const el = carouselRef.current;
     if (!el) return;
-    const cardWidth = el.querySelector('.contributor-card')?.offsetWidth || 0;
-    const gap = 24;
-    el.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+    
+    // Find current visible card
+    const cards = el.querySelectorAll('.contributor-card');
+    const containerRect = el.getBoundingClientRect();
+    
+    for (let i = 0; i < cards.length; i++) {
+      const cardRect = cards[i].getBoundingClientRect();
+      const isVisible = cardRect.left >= containerRect.left && cardRect.right <= containerRect.right;
+      
+      if (isVisible && i < cards.length - 1) {
+        // Scroll to next card
+        cards[i + 1].scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'nearest', 
+          inline: 'start' 
+        });
+        break;
+      }
+    }
   }, []);
 
   const scrollPrev = useCallback(() => {
     const el = carouselRef.current;
     if (!el) return;
-    const cardWidth = el.querySelector('.contributor-card')?.offsetWidth || 0;
-    const gap = 24;
-    el.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
+    
+    // Find current visible card
+    const cards = el.querySelectorAll('.contributor-card');
+    const containerRect = el.getBoundingClientRect();
+    
+    for (let i = 0; i < cards.length; i++) {
+      const cardRect = cards[i].getBoundingClientRect();
+      const isVisible = cardRect.left >= containerRect.left && cardRect.right <= containerRect.right;
+      
+      if (isVisible && i > 0) {
+        // Scroll to previous card
+        cards[i - 1].scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'nearest', 
+          inline: 'start' 
+        });
+        break;
+      }
+    }
   }, []);
 
   useEffect(() => {
     const el = carouselRef.current;
     if (!el) return;
+    
     updateScrollButtons();
-    el.addEventListener('scroll', updateScrollButtons);
-    return () => el.removeEventListener('scroll', updateScrollButtons);
+    
+    // Add throttled scroll listener to prevent too frequent updates
+    let scrollTimeout;
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateScrollButtons, 100);
+    };
+    
+    el.addEventListener('scroll', handleScroll);
+    return () => {
+      el.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
   }, [updateScrollButtons]);
 
   return (

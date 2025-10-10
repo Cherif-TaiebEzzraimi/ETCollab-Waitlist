@@ -3,9 +3,12 @@ import "./WaitlistForm.css";
 
 const WaitlistForm = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
   
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -46,12 +49,48 @@ const WaitlistForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // linki hna khalil
-    console.log('Form submitted:', formData);
-    alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
-    setFormData({ fullName: '', email: '' });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('https://etcollab-waitlist-5.onrender.com/subscribe/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '' });
+        console.log('Successfully joined waitlist!');
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Error response:', response.status, errorData);
+        
+        // Handle specific error cases
+        if (response.status === 400) {
+          // Bad request - might be duplicate email or validation error
+          setSubmitStatus('error');
+        } else if (response.status === 500) {
+          // Server error
+          setSubmitStatus('error');
+        } else {
+          setSubmitStatus('error');
+        }
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -85,18 +124,34 @@ const WaitlistForm = () => {
             </div>
           </div>
 
+          {/* Status Messages */}
+          {submitStatus === 'success' && (
+            <div className="status-message success-message">
+              <h3>🎉 Welcome to ETCOLLAB!</h3>
+              <p>Thank you for joining our waitlist! We'll be in touch soon with updates.</p>
+            </div>
+          )}
+          
+          {submitStatus === 'error' && (
+            <div className="status-message error-message">
+              <h3>❌ Something went wrong</h3>
+              <p>Please try again or contact us if the problem persists.</p>
+            </div>
+          )}
+
           <form className="waitlist-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="fullName" className="form-label">Full name</label>
+              <label htmlFor="name" className="form-label">Full name</label>
               <input
                 type="text"
-                id="fullName"
-                name="fullName"
-                value={formData.fullName}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 placeholder="e.g. Djellouli Rabah Arslene"
                 className="form-input"
                 required
+                disabled={isSubmitting}
               />
             </div>
             
@@ -111,11 +166,20 @@ const WaitlistForm = () => {
                 placeholder="e.g. arslene@etcollab.com"
                 className="form-input"
                 required
+                disabled={isSubmitting}
               />
             </div>
             
-            <button type="submit" className="join-button">
-              <img src="/join_button.png" alt="Join now" className="join-button-img" />
+            <button 
+              type="submit" 
+              className="join-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <span className="loading-text">Joining...</span>
+              ) : (
+                <img src="/join_button.png" alt="Join now" className="join-button-img" />
+              )}
             </button>
           </form>
         </div>
