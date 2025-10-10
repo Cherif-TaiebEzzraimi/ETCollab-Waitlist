@@ -36,7 +36,7 @@ const Contributors = () => {
     },
     {
       id: 4,
-      name: "Fares Mohamed Benhamadi",
+      name: "Fares Mohammed Benhammadi",
       role: "Frontend Developer",
       level: "2 CP",
       profilePic: "/public/fares.webp",
@@ -59,10 +59,10 @@ const Contributors = () => {
       name: "Daachi Oussama",
       role: "Backend Developer",
       level: "1 CS",
-      profilePic: "/profile/pfp.svg",
-      github: "#",
-      linkedin: "#",
-      email: "mike@email.com"
+      profilePic: "/public/Oussy.jpg",
+      github: "https://github.com/OussamaDaachi24",
+      linkedin: "https://www.linkedin.com/in/oussama-student-daachi-/",
+      email: "oussamadaachi1932@gmail.com"
     },
     {
       id: 7,
