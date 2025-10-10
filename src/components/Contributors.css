@@ -29,8 +29,9 @@
 .contributors-carousel-wrapper {
   display: none;
   position: relative;
+  width: 100%;
   /* side gutters so arrows don't overlap cards */
-  padding: 0 56px;
+  padding: 0 60px;
 }
 
 .contributors-carousel {
@@ -39,14 +40,15 @@
   scroll-snap-type: x mandatory;
   gap: 24px;
   padding: 0 8px;
-  scroll-padding: 0 56px; /* align first/last card with gutters */
+  scroll-padding: 0 60px; /* align first/last card with gutters */
 }
 
 .contributors-carousel .contributor-card {
-  min-width: 88%;
-  max-width: 88%;
+  min-width: 100%;
+  max-width: 100%;
   scroll-snap-align: start;
   margin: 0 auto;
+  flex-shrink: 0;
 }
 
 .contributors-prev,
@@ -67,8 +69,8 @@
   z-index: 2;
 }
 
-.contributors-prev { left: 8px; }
-.contributors-next { right: 8px; }
+.contributors-prev { left: 10px; }
+.contributors-next { right: 10px; }
 
 .contributor-card {
   background: white;
@@ -172,8 +174,14 @@
 @media (max-width: 768px) {
   .contributors-section {
     position: relative;
-    padding: 60px 15px;
-    margin: 0 30px;
+    padding: 60px 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .contributors-container {
+    max-width: 100%;
+    padding: 0 20px;
   }
 
   .contributors-title {
@@ -188,6 +196,8 @@
   .contributor-card {
     max-width: 100%;
     padding: 30px 20px 0;
+    height: 370px;
+    max-height: fit-content;
   }
 
   .contributor-avatar {

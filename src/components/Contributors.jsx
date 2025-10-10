@@ -10,8 +10,8 @@ const Contributors = () => {
       role: "Project Manager",
       level: "1 CS", 
       profilePic: "/public/arselane.jpg", // Using existing profile pic as placeholder
-      github: "#",
-      linkedin: "#",
+      github: "https://github.com/arslenedjellouli",
+      linkedin: "https://www.linkedin.com/in/rabah-arslene-djellouli-247499287/",
       email: "arslenedjellouli@gmail.com"
     },
     {
@@ -20,38 +20,38 @@ const Contributors = () => {
       role: "Frontend Developer",
       level: "1 CS",
       profilePic: "/public/Cherif.jpg",
-      github: "#",
-      linkedin: "#",
-      email: "john@email.com"
+      github: "https://github.com/Cherif-TaiebEzzraimi",
+      linkedin: "https://www.linkedin.com/in/taieb-ezzraimi-cherif-842084331/",
+      email: "cheriftbz19@email.com"
     },
     {
       id: 3,
       name: "Majd Baghdadi",
       role: "Frontend Developer",
       level: "1 CS",
-      profilePic: "/profile/pfp.svg",
-      github: "#",
-      linkedin: "#",
-      email: "jane@email.com"
+      profilePic: "/public/Majd.jpg",
+      github: "https://github.com/Majd-Baghdadi",
+      linkedin: "https://www.linkedin.com/in/majd-baghdadi-48ab352b0/",
+      email: "majd.baghdadi@ensia.edu.dz"
     },
     {
       id: 4,
       name: "Fares Mohamed Benhamadi",
       role: "Frontend Developer",
       level: "2 CP",
-      profilePic: "/profile/pfp.svg",
-      github: "#",
-      linkedin: "#",
-      email: "mike@email.com"
+      profilePic: "/public/fares.webp",
+      github: "https://github.com/faresBenhammadi",
+      linkedin: "https://www.linkedin.com/in/fares-benhammadi-6b3b51389/",
+      email: "mohammed-fares.benhammadi@ensia.edu.dz"
     },
     {
       id: 5,
       name: "Mohamed-Elhadi Bachir",
       role: "Backend Developer",
       level: "1 CS",
-      profilePic: "/profile/pfp.svg",
-      github: "#",
-      linkedin: "#",
+      profilePic: "/public/Elhadi.png",
+      github: "https://github.com/Elhadi-B",
+      linkedin: "https://www.linkedin.com/in/elhadi-bachir-79109a307?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       email: "med.elhadi.bachir@gmail.com"
     },
     {
@@ -69,10 +69,10 @@ const Contributors = () => {
       name: "Abdellah Khalil Kessoum",
       role: "Backend Developer",
       level: "1 CS",
-      profilePic: "/profile/pfp.svg",
-      github: "#",
-      linkedin: "#",
-      email: "mike@email.com"
+      profilePic: "/public/Khalil.jpeg",
+      github: "https://github.com/Cheateyy",
+      linkedin: "https://www.linkedin.com/in/abdellah-elkhalil-kessoum-ba854a2a6/",
+      email: "khalilkessoum753@gmail.com"
     },
     {
       id: 8,
@@ -80,7 +80,7 @@ const Contributors = () => {
       role: "UI/UX Designer",
       level: "2 CP",
       profilePic: "/public/Rym.jpeg",
-      github: "#",
+      github: "https://github.com/rymrouikha",
       linkedin: "#",
       email: "rymrouikha.05@gmail.com"
     },
@@ -89,9 +89,9 @@ const Contributors = () => {
       name: "Narimene Hamgani",
       role: "Graphic Designer",
       level: "2 CP",
-      profilePic: "/profile/pfp.svg",
-      github: "#",
-      linkedin: "#",
+      profilePic: "/public/Narimene.jpeg",
+      github: "https://github.com/nariham",
+      linkedin: "https://www.linkedin.com/in/narimene-hamgani-b40257382?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       email: "hamganinarimene@gmail.com"
     }
   ];
