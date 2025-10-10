@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+
+@layer components {
+  .bg-gradient-200 {
+    background-image: linear-gradient(to right, #81e6d9ca, #d6bcfaca);
+  }
+  .bg-gradient-800{
+    background-image: linear-gradient(to right, #03BFB5, #9305F2);
+  }
+  .return-button{
+    @apply flex 
+    items-center 
+    justify-center 
+    sm:h-8 sm:w-8 
+    h-5 w-5
+    bg-[#03BFB5] 
+    rounded-full 
+    text-white 
+    text-center 
+    mt-4 
+    ml-4
+    sm:text-lg 
+    text-sm
+    font-bold
+    hover:bg-[#029f94] hover:shadow-md
+    active:scale-90;
+  }
+}
+
+@layer base{
+  label{
+    @apply text-purple-700 text-left block;
+  }
+  input[type="password"],input[type="email"],input[type="text"],textarea{
+    @apply w-full focus:outline-0 my-2 bg-white py-1 px-3 rounded-lg block;
+  }
+}
+@layer utilities{
+  .submit-button{
+    @apply cursor-pointer px-6 py-2 rounded-lg text-white text-lg font-bold
+  }
+}

@@ -1,0 +1,227 @@
+/* Waitlist Form Styles */
+.waitlist-form-section {
+  padding: 100px 20px;
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waitlist-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.waitlist-content {
+  text-align: center;
+}
+
+.waitlist-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #6b14b9;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.waitlist-description {
+  font-size: 1.1rem;
+  color: #494c52;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.countdown-container {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.countdown-box {
+  background: linear-gradient(90deg, #03BFB5, #9305F2);
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.countdown-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 500;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.waitlist-form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+  justify-content: center;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  color: #6b14b9;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, #03BFB5, #9305F2) border-box;
+  transition: all 0.1s ease;
+}
+
+.form-input:focus {
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, #03BFB5, #9305F2) border-box;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #a6a6ac;
+  font-style: italic;
+}
+
+.join-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin: 10px auto 0 auto;
+  display: block;
+}
+
+.join-button:hover {
+  transform: scale(1.05);
+}
+
+.join-button:active {
+  transform: scale(0.95);
+}
+
+.join-button-img {
+  width: 200px;
+  height: 60px;
+  display: block;
+  transition: all 0.2s ease;
+  object-fit: contain;
+}
+
+.join-button:hover .join-button-img {
+  content: url('/join_hover.png');
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .waitlist-form-section {
+    padding: 60px 20px;
+  }
+  
+  .waitlist-title {
+    font-size: 2.5rem;
+  }
+  
+  .waitlist-description {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .countdown-box {
+    padding: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .countdown-item {
+    min-width: 60px;
+  }
+  
+  .countdown-number {
+    font-size: 2rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.8rem;
+  }
+  
+  .form-input {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+  }
+  
+  .join-button-img {
+    width: 180px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .waitlist-title {
+    font-size: 2rem;
+  }
+  
+  .countdown-box {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .countdown-item {
+    min-width: 50px;
+  }
+  
+  .countdown-number {
+    font-size: 1.8rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.75rem;
+  }
+  
+  .form-input {
+    padding: 12px 14px;
+  }
+  
+  .join-button-img {
+    width: 160px;
+    height: 45px;
+  }
+}

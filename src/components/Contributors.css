@@ -1,0 +1,232 @@
+/* Contributors Section Styles */
+.contributors-section {
+  padding: 80px 20px;
+  background: #fff;
+}
+
+.contributors-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contributors-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-purple-700);
+  margin-bottom: 60px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+
+/* Mobile carousel wrapper (hidden on >=768px) */
+.contributors-carousel-wrapper {
+  display: none;
+  position: relative;
+  /* side gutters so arrows don't overlap cards */
+  padding: 0 56px;
+}
+
+.contributors-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 24px;
+  padding: 0 8px;
+  scroll-padding: 0 56px; /* align first/last card with gutters */
+}
+
+.contributors-carousel .contributor-card {
+  min-width: 88%;
+  max-width: 88%;
+  scroll-snap-align: start;
+  margin: 0 auto;
+}
+
+.contributors-prev,
+.contributors-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--secondary-teal-500);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.contributors-prev { left: 8px; }
+.contributors-next { right: 8px; }
+
+.contributor-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.contributor-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.contributor-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.contributor-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-purple-700);
+}
+
+.contributor-level {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--secondary-teal-500);
+  margin-bottom: 8px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contributor-role {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-purple-700);
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contributor-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-teal-900);
+  margin-bottom: 30px;
+  font-family: 'Montserrat', sans-serif;
+  flex-grow: 1;
+}
+
+.contributor-contacts {
+  background: linear-gradient(90deg, var(--secondary-teal-500), var(--secondary-purple-600));
+  margin: 0 -30px 0 -30px;
+  padding: 20px 30px 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.contact-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.contact-icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.contact-icon img[src="/login/github.png"] {
+  filter: brightness(0) invert(1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .contributors-section {
+    position: relative;
+    padding: 60px 15px;
+    margin: 0 30px;
+  }
+
+  .contributors-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  /* Hide grid and use carousel on mobile */
+  .contributors-grid { display: none; }
+  .contributors-carousel-wrapper { display: block; }
+
+  .contributor-card {
+    max-width: 100%;
+    padding: 30px 20px 0;
+  }
+
+  .contributor-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .contributor-level {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+
+  .contributor-role {
+    font-size: 1rem;
+  }
+
+  .contributor-name {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .contributor-contacts {
+    position: relative;
+    margin: 0 -20px 0px -20px;
+    padding: 15px 20px 25px;
+    gap: 15px;
+  }
+
+  .contact-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .contact-icon img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .contact-icon img[src="/login/github.png"] {
+    filter: brightness(0) invert(1);
+  }
+}
