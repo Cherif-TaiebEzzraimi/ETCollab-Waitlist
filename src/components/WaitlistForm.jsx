@@ -50,7 +50,7 @@ const WaitlistForm = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://localhost:8000/api/subscribe', {
+      const response = await fetch('https://etcollab-waitlist-5.onrender.com/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
