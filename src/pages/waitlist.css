@@ -564,7 +564,7 @@ main{
 }
 
 
-@media (max-width: 600px){
+@media (max-width: 665px){
   .benefits-container{
     display: flex;
     flex-direction: column;
