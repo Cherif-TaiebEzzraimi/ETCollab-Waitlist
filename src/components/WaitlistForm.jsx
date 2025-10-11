@@ -3,7 +3,7 @@ import "./WaitlistForm.css";
 
 const WaitlistForm = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: ''
   });
   
@@ -63,8 +63,9 @@ const WaitlistForm = () => {
       if (response.ok) {
         console.log('Successfully subscribed:', data);
         alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
-        setFormData({ fullName: '', email: '' });
+        setFormData({ name: '', email: '' });
       } else {
+        console.log(response);
         console.error('Subscription failed:', data);
         alert(`Failed to subscribe: ${data.error || 'Unknown error'}`);
       }
@@ -107,12 +108,12 @@ const WaitlistForm = () => {
 
           <form className="waitlist-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="fullName" className="form-label">Full name</label>
+              <label htmlFor="name" className="form-label">Full name</label>
               <input
                 type="text"
-                id="fullName"
-                name="fullName"
-                value={formData.fullName}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
                 placeholder="e.g. Djellouli Rabah Arslene"
                 className="form-input"
