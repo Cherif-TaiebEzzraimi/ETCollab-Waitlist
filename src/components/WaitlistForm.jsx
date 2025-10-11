@@ -3,12 +3,9 @@ import "./WaitlistForm.css";
 
 const WaitlistForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: ''
   });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
   
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -18,7 +15,7 @@ const WaitlistForm = () => {
   });
 
   // Set target date to October 21, 2025
-  const targetDate = new Date('2025-10-21T00:00:00');
+  const targetDate = new Date('2025-10-22T00:00:00');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -51,45 +48,29 @@ const WaitlistForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
+    
     try {
-      const response = await fetch('https://etcollab-waitlist-5.onrender.com/subscribe/', {
+      const response = await fetch('http://localhost:8000/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email
-        })
+        body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '' });
-        console.log('Successfully joined waitlist!');
+        console.log('Successfully subscribed:', data);
+        alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
+        setFormData({ fullName: '', email: '' });
       } else {
-        const errorData = await response.json().catch(() => ({}));
-        console.error('Error response:', response.status, errorData);
-        
-        // Handle specific error cases
-        if (response.status === 400) {
-          // Bad request - might be duplicate email or validation error
-          setSubmitStatus('error');
-        } else if (response.status === 500) {
-          // Server error
-          setSubmitStatus('error');
-        } else {
-          setSubmitStatus('error');
-        }
+        console.error('Subscription failed:', data);
+        alert(`Failed to subscribe: ${data.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Network error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+      alert('Network error: Failed to subscribe. Please try again.');
     }
   };
 
@@ -124,34 +105,18 @@ const WaitlistForm = () => {
             </div>
           </div>
 
-          {/* Status Messages */}
-          {submitStatus === 'success' && (
-            <div className="status-message success-message">
-              <h3>🎉 Welcome to ETCOLLAB!</h3>
-              <p>Thank you for joining our waitlist! We'll be in touch soon with updates.</p>
-            </div>
-          )}
-          
-          {submitStatus === 'error' && (
-            <div className="status-message error-message">
-              <h3>❌ Something went wrong</h3>
-              <p>Please try again or contact us if the problem persists.</p>
-            </div>
-          )}
-
           <form className="waitlist-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name" className="form-label">Full name</label>
+              <label htmlFor="fullName" className="form-label">Full name</label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+                id="fullName"
+                name="fullName"
+                value={formData.fullName}
                 onChange={handleInputChange}
                 placeholder="e.g. Djellouli Rabah Arslene"
                 className="form-input"
                 required
-                disabled={isSubmitting}
               />
             </div>
             
@@ -166,20 +131,11 @@ const WaitlistForm = () => {
                 placeholder="e.g. arslene@etcollab.com"
                 className="form-input"
                 required
-                disabled={isSubmitting}
               />
             </div>
             
-            <button 
-              type="submit" 
-              className="join-button"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <span className="loading-text">Joining...</span>
-              ) : (
-                <img src="/join_button.png" alt="Join now" className="join-button-img" />
-              )}
+            <button type="submit" className="join-button">
+              <img src="/join_button.png" alt="Join now" className="join-button-img" />
             </button>
           </form>
         </div>

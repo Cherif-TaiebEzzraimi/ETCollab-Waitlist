@@ -36,7 +36,7 @@
 
 .contributors-carousel {
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden; /* Disable scrolling */
   scroll-snap-type: x mandatory;
   gap: 24px;
   padding: 0 8px;
@@ -45,6 +45,8 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+  touch-action: none; /* Disable touch scrolling */
+  user-select: none; /* Prevent text selection */
 }
 
 .contributors-carousel::-webkit-scrollbar {
@@ -54,11 +56,14 @@
 .contributors-carousel .contributor-card {
   min-width: 100%;
   max-width: 100%;
-  scroll-snap-align: start;
   margin: 0 auto;
   flex-shrink: 0;
-  height: 350px; /* Shorter height */
-  min-height: 350px;
+  height: 420px; /* Consistent height */
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .contributors-prev,
@@ -83,7 +88,26 @@
 .contributors-prev:hover,
 .contributors-next:hover {
   background: var(--secondary-teal-600);
-  transform: translateY(-50%) scale(1.1);
+  transform:  scale(1.1);
+}
+
+.contributors-prev:active,
+.contributors-next:active {
+  background: var(--secondary-teal-700);
+  transform: scale(0.95);
+}
+
+.contributors-prev:focus,
+.contributors-next:focus {
+  outline: none;
+  background: var(--secondary-teal-500);
+}
+
+.contributors-prev:disabled,
+.contributors-next:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .contributors-prev { left: 10px; }
@@ -92,7 +116,7 @@
 .contributor-card {
   background: white;
   border-radius: 20px;
-  padding: 30px 25px 0;
+  padding: 40px 30px 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
@@ -100,12 +124,13 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 350px; /* Shorter height */
-  min-height: 350px;
+  height: 420px; /* Fixed height for consistency */
+  min-height: 420px;
+  position: relative; /* For absolute positioned contact section */
 }
 
 .contributor-card:hover {
-  transform: translateY(-10px);
+ 
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
@@ -164,8 +189,17 @@
   padding: 20px 30px 30px;
   display: flex;
   justify-content: center;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
+  width: calc(100% + 60px); /* Full width including negative margins */
+  height: 80px; /* Fixed height */
+  min-height: 80px;
+  max-height: 80px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .contact-icon {
@@ -212,8 +246,8 @@
   }
   
   .contributor-card {
-    height: 330px;
-    min-height: 330px;
+    height: 400px;
+    min-height: 400px;
   }
 }
 
@@ -242,9 +276,9 @@
 
   .contributor-card {
     max-width: 100%;
-    padding: 25px 20px 0;
-    height: 320px;
-    min-height: 320px;
+    padding: 30px 20px 0;
+    height: 380px;
+    min-height: 380px;
   }
 
   .contributor-avatar {
@@ -268,10 +302,21 @@
   }
 
   .contributor-contacts {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: 0 -20px 0px -20px;
     padding: 15px 20px 25px;
     gap: 15px;
+    width: calc(100% + 40px); /* Full width including negative margins */
+    height: 70px; /* Fixed height for mobile */
+    min-height: 70px;
+    max-height: 70px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .contact-icon {
@@ -312,8 +357,8 @@
   .contributors-carousel-wrapper { display: block; }
 
   .contributor-card {
-    max-width: 100%;
-    padding: 20px 15px 0;
+    width: 100%;
+    padding: 25px 15px 0;
     height: 300px;
     min-height: 300px;
   }
@@ -339,10 +384,21 @@
   }
 
   .contributor-contacts {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: 0 -15px 0px -15px;
     padding: 12px 15px 20px;
     gap: 12px;
+    width: calc(100% + 30px); /* Full width including negative margins */
+    height: 65px; /* Fixed height for smaller mobile */
+    min-height: 65px;
+    max-height: 65px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .contact-icon {

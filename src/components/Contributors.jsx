@@ -26,6 +26,18 @@ const Contributors = () => {
     },
     {
       id: 3,
+      name: "Abdellah Khalil Kessoum",
+      role: "Backend Developer",
+      level: "1 CS",
+      profilePic: "/public/Khalil.jpeg",
+      github: "https://github.com/Cheateyy",
+      linkedin: "https://www.linkedin.com/in/abdellah-elkhalil-kessoum-ba854a2a6/",
+      email: "khalilkessoum753@gmail.com"
+      
+    },
+    {
+      
+      id: 4,
       name: "Majd Baghdadi",
       role: "Frontend Developer",
       level: "1 CS",
@@ -33,16 +45,6 @@ const Contributors = () => {
       github: "https://github.com/Majd-Baghdadi",
       linkedin: "https://www.linkedin.com/in/majd-baghdadi-48ab352b0/",
       email: "majd.baghdadi@ensia.edu.dz"
-    },
-    {
-      id: 4,
-      name: "Fares Mohammed Benhammadi",
-      role: "Frontend Developer",
-      level: "2 CP",
-      profilePic: "/public/fares.webp",
-      github: "https://github.com/faresBenhammadi",
-      linkedin: "https://www.linkedin.com/in/fares-benhammadi-6b3b51389/",
-      email: "mohammed-fares.benhammadi@ensia.edu.dz"
     },
     {
       id: 5,
@@ -66,13 +68,13 @@ const Contributors = () => {
     },
     {
       id: 7,
-      name: "Abdellah Khalil Kessoum",
-      role: "Backend Developer",
-      level: "1 CS",
-      profilePic: "/public/Khalil.jpeg",
-      github: "https://github.com/Cheateyy",
-      linkedin: "https://www.linkedin.com/in/abdellah-elkhalil-kessoum-ba854a2a6/",
-      email: "khalilkessoum753@gmail.com"
+      name: "Fares Mohammed Benhammadi",
+      role: "Frontend Developer",
+      level: "2 CP",
+      profilePic: "/public/fares.webp",
+      github: "https://github.com/faresBenhammadi",
+      linkedin: "https://www.linkedin.com/in/fares-benhammadi-6b3b51389/",
+      email: "mohammed-fares.benhammadi@ensia.edu.dz"
     },
     {
       id: 8,
@@ -98,88 +100,43 @@ const Contributors = () => {
 
   // Mobile carousel behavior (similar to Testimonials)
   const carouselRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
   const updateScrollButtons = useCallback(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const { scrollLeft, scrollWidth, clientWidth } = el;
-    
-    // More precise calculation for arrow visibility
-    const isAtStart = scrollLeft <= 5; // Small tolerance for smooth scrolling
-    const isAtEnd = scrollLeft >= scrollWidth - clientWidth - 5; // Small tolerance
-    
-    setCanScrollLeft(!isAtStart);
-    setCanScrollRight(!isAtEnd);
-  }, []);
+    setCanScrollLeft(currentIndex > 0);
+    setCanScrollRight(currentIndex < contributors.length - 1);
+  }, [currentIndex, contributors.length]);
 
   const scrollNext = useCallback(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    
-    // Find current visible card
-    const cards = el.querySelectorAll('.contributor-card');
-    const containerRect = el.getBoundingClientRect();
-    
-    for (let i = 0; i < cards.length; i++) {
-      const cardRect = cards[i].getBoundingClientRect();
-      const isVisible = cardRect.left >= containerRect.left && cardRect.right <= containerRect.right;
-      
-      if (isVisible && i < cards.length - 1) {
-        // Scroll to next card
-        cards[i + 1].scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'nearest', 
-          inline: 'start' 
-        });
-        break;
+    if (currentIndex < contributors.length - 1) {
+      const newIndex = currentIndex + 1;
+      setCurrentIndex(newIndex);
+      const el = carouselRef.current;
+      if (el) {
+        const cardWidth = el.querySelector('.contributor-card')?.offsetWidth || 0;
+        const gap = 24;
+        el.scrollTo({ left: newIndex * (cardWidth + gap), behavior: 'smooth' });
       }
     }
-  }, []);
+  }, [currentIndex, contributors.length]);
 
   const scrollPrev = useCallback(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    
-    // Find current visible card
-    const cards = el.querySelectorAll('.contributor-card');
-    const containerRect = el.getBoundingClientRect();
-    
-    for (let i = 0; i < cards.length; i++) {
-      const cardRect = cards[i].getBoundingClientRect();
-      const isVisible = cardRect.left >= containerRect.left && cardRect.right <= containerRect.right;
-      
-      if (isVisible && i > 0) {
-        // Scroll to previous card
-        cards[i - 1].scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'nearest', 
-          inline: 'start' 
-        });
-        break;
+    if (currentIndex > 0) {
+      const newIndex = currentIndex - 1;
+      setCurrentIndex(newIndex);
+      const el = carouselRef.current;
+      if (el) {
+        const cardWidth = el.querySelector('.contributor-card')?.offsetWidth || 0;
+        const gap = 24;
+        el.scrollTo({ left: newIndex * (cardWidth + gap), behavior: 'smooth' });
       }
     }
-  }, []);
+  }, [currentIndex]);
 
   useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    
     updateScrollButtons();
-    
-    // Add throttled scroll listener to prevent too frequent updates
-    let scrollTimeout;
-    const handleScroll = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(updateScrollButtons, 100);
-    };
-    
-    el.addEventListener('scroll', handleScroll);
-    return () => {
-      el.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
-    };
   }, [updateScrollButtons]);
 
   return (
@@ -245,16 +202,20 @@ const Contributors = () => {
               </div>
             ))}
           </div>
-          {canScrollLeft && (
-            <button className="contributors-prev" onClick={scrollPrev}>
-              <ChevronLeft size={24} />
-            </button>
-          )}
-          {canScrollRight && (
-            <button className="contributors-next" onClick={scrollNext}>
-              <ChevronRight size={24} />
-            </button>
-          )}
+          <button 
+            className="contributors-prev" 
+            onClick={scrollPrev}
+            disabled={!canScrollLeft}
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button 
+            className="contributors-next" 
+            onClick={scrollNext}
+            disabled={!canScrollRight}
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
       </div>
     </section>
