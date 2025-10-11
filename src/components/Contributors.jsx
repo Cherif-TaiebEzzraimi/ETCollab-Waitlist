@@ -159,13 +159,13 @@ const Contributors = () => {
               <div className="contributor-role">{contributor.role}</div>
               <div className="contributor-name">{contributor.name}</div>
               <div className="contributor-contacts">
-                <a href={contributor.github} className="contact-icon">
+                <a href={contributor.github} className="contact-icon" target="_blank" rel="noopener noreferrer">
                   <img src="/login/github.png" alt="GitHub" />
                 </a>
-                <a href={contributor.linkedin} className="contact-icon">
+                <a href={contributor.linkedin} className="contact-icon" target="_blank" rel="noopener noreferrer">
                   <img src="/Footer/linkedin.png" alt="LinkedIn" />
                 </a>
-                <a href={`mailto:${contributor.email}`} className="contact-icon">
+                <a href={`mailto:${contributor.email}`} className="contact-icon" target="_blank" rel="noopener noreferrer">
                   <img src="/Footer/mail.png" alt="Email" />
                 </a>
               </div>
@@ -189,13 +189,13 @@ const Contributors = () => {
                 <div className="contributor-role">{contributor.role}</div>
                 <div className="contributor-name">{contributor.name}</div>
                 <div className="contributor-contacts">
-                  <a href={contributor.github} className="contact-icon">
+                  <a href={contributor.github} className="contact-icon" target="_blank" rel="noopener noreferrer">
                     <img src="/login/github.png" alt="GitHub" />
                   </a>
-                  <a href={contributor.linkedin} className="contact-icon">
+                  <a href={contributor.linkedin} className="contact-icon" target="_blank" rel="noopener noreferrer">
                     <img src="/Footer/linkedin.png" alt="LinkedIn" />
                   </a>
-                  <a href={`mailto:${contributor.email}`} className="contact-icon">
+                  <a href={`mailto:${contributor.email}`} className="contact-icon" target="_blank" rel="noopener noreferrer">
                     <img src="/Footer/mail.png" alt="Email" />
                   </a>
                 </div>
