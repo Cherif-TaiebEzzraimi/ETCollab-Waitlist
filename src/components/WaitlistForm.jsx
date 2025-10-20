@@ -15,7 +15,7 @@ const WaitlistForm = () => {
   });
 
   // Set target date to October 21, 2025
-  const targetDate = new Date('2025-10-22T00:00:00');
+  const targetDate = new Date('2025-10-26T00:00:00');
 
   useEffect(() => {
     const timer = setInterval(() => {
